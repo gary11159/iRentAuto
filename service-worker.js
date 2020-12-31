@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/iRentAutoFrontEnd/precache-manifest.b71d1e24a080ebd894a68061ab2c4b4b.js"
+  "/iRentAutoFrontEnd/precache-manifest.b3a52aba077a0180acf07141300eeec6.js"
 );
 
 self.addEventListener('message', (event) => {
