@@ -39,16 +39,21 @@ function Irent(props) {
             'radius': radius
         }
 
-        fetch('http://127.0.0.1:8000/autoSearch/', {
+        props.setLoadingStatus(true);
+        fetch('https://garyapi.herokuapp.com/autoSearch/', {
             method: 'POST', // or 'PUT'
             body: JSON.stringify(data), // data can be `string` or {object}!
             headers: new Headers({
                 'Content-Type': 'application/json'
             })
         }).then(res => res.json())
-            .catch(error => console.error('Error:', error))
+            .catch(error => {
+                console.error('Error:', error);
+                props.setLoadingStatus(false);
+            })
             .then(response => {
                 props.setStatus('busy');
+                props.setLoadingStatus(false);
                 console.log('Success:', response)
             });
     }
