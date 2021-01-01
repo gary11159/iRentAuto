@@ -1,6 +1,4 @@
 import React from 'react';
-import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
-import ToggleButton from 'react-bootstrap/ToggleButton';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -8,15 +6,16 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
+import { GoogleMap, InfoWindow, LoadScript, Marker } from '@react-google-maps/api';
 
 function Irent(props) {
     const [coords, setCoords] = React.useState();
     const [locatemessage, setLocateMessgae] = React.useState();
-    const [curTab, setCurTab] = React.useState('cur');
     const [radius, setRadius] = React.useState(0.5);
+    const [map, setMap] = React.useState(null);
 
     function locSuccess(position) {
-        setCoords(pre => ({ 'lat': position.coords.latitude, 'long': position.coords.longitude }));
+        setCoords(pre => ({ 'lat': position.coords.latitude, 'lng': position.coords.longitude }));
         setLocateMessgae(pre => 'success');
     }
 
@@ -25,7 +24,7 @@ function Irent(props) {
     };
 
     React.useEffect(() => {
-        navigator.geolocation.getCurrentPosition(locSuccess, locError);
+        initPosition()
     }, [])
 
     // 自動預約
@@ -35,7 +34,7 @@ function Irent(props) {
         let data = {
             'authorToken': authorToken,
             'lat': coords.lat,
-            'long': coords.long,
+            'long': coords.lng,
             'radius': radius
         }
 
@@ -63,58 +62,79 @@ function Irent(props) {
         event.target.select();
     }
 
+    // 回到當前位置
+    function initPosition() {
+        navigator.geolocation.getCurrentPosition(locSuccess, locError);
+    }
+
     return (
         <>
-            <ToggleButtonGroup type="radio" name="options" defaultValue={curTab} style={{ width: '70%' }}>
-                <ToggleButton value={'cur'} onClick={() => setCurTab('cur')}>當前位置</ToggleButton>
-                <ToggleButton value={'specify'} onClick={() => setCurTab('specify')}>指定位置</ToggleButton>
-            </ToggleButtonGroup>
-            {curTab === 'cur' &&
-                <Container className="maringTop20">
-                    {locatemessage === 'success' ?
-                        <Container>
-                            <Row>
-                                當前座標
-                            </Row>
-                            <Row>
-                                {'N: ' + coords.lat.toFixed(3) + ', S: ' + coords.long.toFixed(3)}
-                            </Row>
-                            <Row className="maringTop20">
-                                <Col sm={8}>
-                                    <InputGroup size="lg" className="mb-3">
-                                        <InputGroup.Prepend>
-                                            <InputGroup.Text id="inputGroup-sizing-sm">請輸入AuthorToken</InputGroup.Text>
-                                        </InputGroup.Prepend>
-                                        <FormControl id="deviceInput" aria-label="Small" aria-describedby="inputGroup-sizing-sm" defaultValue={localStorage.getItem('authorToken')} onFocus={handleFocus} />
-                                    </InputGroup>
-                                </Col>
-                            </Row>
-                            <Row className="maringTop20">
-                                <Col sm={8}>
-                                    <InputGroup size="lg" className="mb-3">
-                                        <InputGroup.Prepend>
-                                            <InputGroup.Text>請選擇搜尋半徑(KM)</InputGroup.Text>
-                                        </InputGroup.Prepend>
-                                        <Form.Control defaultValue={0.5} as="select" custom onChange={(e) => setRadius(e.target.value)} style={{ width: '30%' }}>
-                                            <option>0.3</option>
-                                            <option>0.5</option>
-                                            <option>0.7</option>
-                                            <option>1</option>
-                                            <option>1.5</option>
-                                            <option>2</option>
-                                            <option>100</option>
-                                        </Form.Control>
-                                    </InputGroup>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Button variant="warning" className="maringTop20" onClick={() => startAutoReserve()}>啟動自動預約</Button>
-                            </Row>
-                        </Container>
-                        : <div>無法取得當前位置</div>
-                    }
-                </Container>
-            }
+            <Container>
+                {locatemessage === 'success' ?
+                    <Container>
+                        <Row>
+                            當前座標
+                        </Row>
+                        <Row>
+                            {'N: ' + coords.lat.toFixed(3) + ', S: ' + coords.lng.toFixed(3)}
+                        </Row>
+                        <Row className="maringTop20">
+                            <Col sm={8}>
+                                <InputGroup size="lg" className="mb-3">
+                                    <InputGroup.Prepend>
+                                        <InputGroup.Text id="inputGroup-sizing-sm">請輸入AuthorToken</InputGroup.Text>
+                                    </InputGroup.Prepend>
+                                    <FormControl id="deviceInput" aria-label="Small" aria-describedby="inputGroup-sizing-sm" defaultValue={localStorage.getItem('authorToken')} onFocus={handleFocus} />
+                                </InputGroup>
+                            </Col>
+                        </Row>
+                        <Row className="maringTop20">
+                            <Col sm={8}>
+                                <InputGroup size="lg" className="mb-3">
+                                    <InputGroup.Prepend>
+                                        <InputGroup.Text>請選擇搜尋半徑(KM)</InputGroup.Text>
+                                    </InputGroup.Prepend>
+                                    <Form.Control defaultValue={0.5} as="select" custom onChange={(e) => setRadius(e.target.value)} style={{ width: '30%' }}>
+                                        <option>0.3</option>
+                                        <option>0.5</option>
+                                        <option>0.7</option>
+                                        <option>1</option>
+                                        <option>1.5</option>
+                                        <option>2</option>
+                                        <option>100</option>
+                                    </Form.Control>
+                                </InputGroup>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <LoadScript
+                                googleMapsApiKey="AIzaSyCcLoBWrSwqFI5uxY_8qdhqCkse_QEcRDM"
+                            >
+                                <GoogleMap
+                                    mapContainerStyle={{ width: '100%', height: '600px' }}
+                                    zoom={15}
+                                    // Store a reference to the google map instance in state
+                                    onLoad={map => setMap(map)}
+                                    onClick={e => setCoords(e.latLng.toJSON())}
+                                    center={coords}
+                                >
+                                    <Marker position={coords}>
+                                        <InfoWindow >
+                                            <div className="infoWindow" style={{ color: 'black' }}>以這裡為基準搜尋</div>
+                                        </InfoWindow>
+                                    </Marker>
+                                </GoogleMap>
+                            </LoadScript>
+                        </Row>
+                        <Row className="maringTop20">
+                            <Button variant="info" onClick={() => initPosition()} style={{ marginRight: '20px' }}>回到當前位置</Button>
+                            <Button variant="warning" onClick={() => startAutoReserve()}>啟動自動預約</Button>
+                        </Row>
+                    </Container>
+
+                    : <div>無法取得當前位置</div>
+                }
+            </Container>
         </>
     );
 }

@@ -84,3 +84,9 @@
 #loader-wrapper .loader-section.section-right {
   right: 0;
 }
+
+.infoWindow {
+  font: 400 20px Roboto, Arial, sans-serif;
+  text-decoration: none;
+  color: black;
+}
