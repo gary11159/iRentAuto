@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ec0285c27e6f71df4c1bfa5c3394294c",
+    "revision": "032c46f5919f7d5fbe4f532170098e3c",
     "url": "/iRentAutoFrontEnd/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/iRentAutoFrontEnd/static/css/2.2a86faee.chunk.css"
   },
   {
-    "revision": "ab62967c2cc7e2379e86",
+    "revision": "ac078c037804182b9e19",
     "url": "/iRentAutoFrontEnd/static/css/main.abf6f7cd.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/iRentAutoFrontEnd/static/js/2.c0a4c1c0.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "ab62967c2cc7e2379e86",
-    "url": "/iRentAutoFrontEnd/static/js/main.998e243e.chunk.js"
+    "revision": "ac078c037804182b9e19",
+    "url": "/iRentAutoFrontEnd/static/js/main.bc579d4d.chunk.js"
   },
   {
     "revision": "68a65f9b3ca1062c8346",
