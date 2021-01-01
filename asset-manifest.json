@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/iRentAutoFrontEnd/static/css/main.abf6f7cd.chunk.css",
-    "main.js": "/iRentAutoFrontEnd/static/js/main.7b19781f.chunk.js",
-    "main.js.map": "/iRentAutoFrontEnd/static/js/main.7b19781f.chunk.js.map",
+    "main.js": "/iRentAutoFrontEnd/static/js/main.89dffbea.chunk.js",
+    "main.js.map": "/iRentAutoFrontEnd/static/js/main.89dffbea.chunk.js.map",
     "runtime-main.js": "/iRentAutoFrontEnd/static/js/runtime-main.473a47f7.js",
     "runtime-main.js.map": "/iRentAutoFrontEnd/static/js/runtime-main.473a47f7.js.map",
     "static/css/2.2a86faee.chunk.css": "/iRentAutoFrontEnd/static/css/2.2a86faee.chunk.css",
     "static/js/2.c0a4c1c0.chunk.js": "/iRentAutoFrontEnd/static/js/2.c0a4c1c0.chunk.js",
     "static/js/2.c0a4c1c0.chunk.js.map": "/iRentAutoFrontEnd/static/js/2.c0a4c1c0.chunk.js.map",
     "index.html": "/iRentAutoFrontEnd/index.html",
-    "precache-manifest.a2fcbc5144ecc0b34c7bb841b67337f2.js": "/iRentAutoFrontEnd/precache-manifest.a2fcbc5144ecc0b34c7bb841b67337f2.js",
+    "precache-manifest.55b5de558ff4c3e995eb9a169f8a9cc3.js": "/iRentAutoFrontEnd/precache-manifest.55b5de558ff4c3e995eb9a169f8a9cc3.js",
     "service-worker.js": "/iRentAutoFrontEnd/service-worker.js",
     "static/css/2.2a86faee.chunk.css.map": "/iRentAutoFrontEnd/static/css/2.2a86faee.chunk.css.map",
     "static/css/main.abf6f7cd.chunk.css.map": "/iRentAutoFrontEnd/static/css/main.abf6f7cd.chunk.css.map",
@@ -21,6 +21,6 @@
     "static/css/2.2a86faee.chunk.css",
     "static/js/2.c0a4c1c0.chunk.js",
     "static/css/main.abf6f7cd.chunk.css",
-    "static/js/main.7b19781f.chunk.js"
+    "static/js/main.89dffbea.chunk.js"
   ]
 }
