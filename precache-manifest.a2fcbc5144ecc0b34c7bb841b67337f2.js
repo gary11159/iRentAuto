@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a66e04958eba5688700bac959144a2cf",
+    "revision": "b7a01150da624b88c5dbfa096360d19d",
     "url": "/iRentAutoFrontEnd/index.html"
   },
   {
-    "revision": "f24d6ff00a1b201d12e4",
+    "revision": "55a9a6ad019585c89947",
     "url": "/iRentAutoFrontEnd/static/css/2.2a86faee.chunk.css"
   },
   {
-    "revision": "8f8fa7b28289a92a2315",
-    "url": "/iRentAutoFrontEnd/static/css/main.b5d8c0c6.chunk.css"
+    "revision": "0596a6d6a0c17facd3c4",
+    "url": "/iRentAutoFrontEnd/static/css/main.abf6f7cd.chunk.css"
   },
   {
-    "revision": "f24d6ff00a1b201d12e4",
-    "url": "/iRentAutoFrontEnd/static/js/2.aa5b56d2.chunk.js"
+    "revision": "55a9a6ad019585c89947",
+    "url": "/iRentAutoFrontEnd/static/js/2.c0a4c1c0.chunk.js"
   },
   {
     "revision": "5ac48c47bb3912b14c2d8de4f56d5ae8",
-    "url": "/iRentAutoFrontEnd/static/js/2.aa5b56d2.chunk.js.LICENSE.txt"
+    "url": "/iRentAutoFrontEnd/static/js/2.c0a4c1c0.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "8f8fa7b28289a92a2315",
-    "url": "/iRentAutoFrontEnd/static/js/main.bc38d6a3.chunk.js"
+    "revision": "0596a6d6a0c17facd3c4",
+    "url": "/iRentAutoFrontEnd/static/js/main.7b19781f.chunk.js"
   },
   {
     "revision": "68a65f9b3ca1062c8346",
