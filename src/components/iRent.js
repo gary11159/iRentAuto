@@ -108,7 +108,7 @@ function Irent(props) {
                         </Row>
                         <Row>
                             <LoadScript
-                                googleMapsApiKey="AIzaSyCcLoBWrSwqFI5uxY_8qdhqCkse_QEcRDM"
+                                googleMapsApiKey={process.env.REACT_APP_EX_APIKEY}
                             >
                                 <GoogleMap
                                     mapContainerStyle={{ width: '100%', height: '600px' }}
