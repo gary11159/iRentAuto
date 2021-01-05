@@ -27,12 +27,37 @@ function Irent(props) {
         initPosition()
     }, [])
 
-    // 自動預約
-    function startAutoReserve() {
+    // 檢查Token可否使用
+    async function checkToken() {
         let authorToken = document.getElementById('deviceInput').value;
         localStorage.setItem('authorToken', authorToken);
+        props.setLoadingStatus(true);
+        await fetch('https://garyapi.herokuapp.com/checkToken/', {
+            method: 'POST', // or 'PUT'
+            body: JSON.stringify({ "idNo": process.env.REACT_APP_EX_ID, "token": authorToken }), // data can be `string` or {object}!
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            })
+        }).then(res => res.json())
+            .catch(error => {
+                console.error('Error:', error);
+                props.setLoadingStatus(false);
+                alert("無效Token");
+            })
+            .then(response => {
+                props.setLoadingStatus(false);
+                if (response.message === 'Success') {
+                    startAutoReserve();
+                } else {
+                    alert("無效Token");
+                }
+            });
+    }
+
+    // 自動預約
+    function startAutoReserve() {
         let data = {
-            'authorToken': authorToken,
+            'authorToken': localStorage.authorToken,
             'lat': coords.lat,
             'long': coords.lng,
             'radius': radius
@@ -127,8 +152,8 @@ function Irent(props) {
                             </LoadScript>
                         </Row>
                         <Row className="maringTop20">
-                            <Button variant="info" onClick={() => initPosition()} style={{ marginRight: '20px' }}>回到當前位置</Button>
-                            <Button variant="warning" onClick={() => startAutoReserve()}>啟動自動預約</Button>
+                            <Button variant="warning" onClick={() => checkToken()} style={{ marginRight: '20px' }}>啟動自動預約</Button>
+                            <Button variant="info" onClick={() => initPosition()}>回到當前位置</Button>
                         </Row>
                     </Container>
 
