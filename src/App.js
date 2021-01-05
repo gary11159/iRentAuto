@@ -15,11 +15,11 @@ function App() {
 
   function init() {
     setLoadingStatus(true);
-    fetch('https://garyapi.herokuapp.com/checkJobExist/')
+    fetch('https://garyapi.herokuapp.com/checkRunning/')
       .then(response => response.json())
       .then(data => {
         setLoadingStatus(false);
-        setStatus(data.message)
+        setStatus(data.runningProcess)
       }).catch(function (response) {
         setStatus('Error');
         setLoadingStatus(false);
@@ -48,9 +48,9 @@ function App() {
         {loadingStatus &&
           <Spinner />
         }
-        {status === 'free' ?
+        {status === 0 ?
           <Irent setStatus={(status) => setStatus(status)} setLoadingStatus={(status) => setLoadingStatus(status)} />
-          : status === 'busy' ?
+          : status === 1 ?
             <>
               <span>正在進行自動化預約iRent</span>
               <Button variant="danger" className="maringTop20" onClick={() => cancelJob()}>取消預約？</Button>
