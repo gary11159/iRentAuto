@@ -151,7 +151,7 @@ function Irent(props) {
                                 </GoogleMap>
                             </LoadScript>
                         </Row>
-                        <Row className="maringTop20">
+                        <Row className="margin20">
                             <Button variant="warning" onClick={() => checkToken()} style={{ marginRight: '20px' }}>啟動自動預約</Button>
                             <Button variant="info" onClick={() => initPosition()}>回到當前位置</Button>
                         </Row>
